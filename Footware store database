@@ -1,0 +1,29 @@
+--Design a store Database.
+
+CREATE TABLE Footware_store (Id INTEGER PRIMARY KEY, name TEXT, Types TEXT, Gender_group TEXT, Quantity INTEGER, Ratings INTEGER);
+
+INSERT INTO Footware_store VALUES (1, "Cloudfoam pure", "Sneakers", "Women", 22, 4.5);
+INSERT INTO Footware_store VALUES (2, "Flat ankle strap", "Sandles", "women", 12, 3.5);
+INSERT INTO Footware_store VALUES (3, "Solid faux leaser", "Sneakers", "Men", 32, 4.5);
+INSERT INTO Footware_store VALUES (4, "Cloud white", "Sneakers", "Women" , 50, 5.0);
+INSERT INTO Footware_store VALUES (5, "Slip-on loafers", "Casual", "Women", 42, 4.5);
+INSERT INTO Footware_store VALUES (6, "Minimalist lace-up","Sneakers", "Women", 34, 3.5);
+INSERT INTO Footware_store VALUES (7, "Retro Dunk low", "Sneakers", "Men", 43, 4.5);
+INSERT INTO Footware_store VALUES (8, "Nimbus cloud white", "Sneakers", "Men", 54, 3.5);
+INSERT INTO Footware_store VALUES (9, "Osiris graff skate", "Sneakers", "Men", 34, 4.5);
+INSERT INTO Footware_store VALUES (10, "Flat ankle strapless", "Sandles", "Men", 21, 5.0);
+INSERT INTO Footware_store VALUES (11, "Double loop gladiator", "Sandles", "Kids", 43, 4.5);
+INSERT INTO Footware_store VALUES (12, "Breeathable Mesh", "Sneakers", "Kids", 23, 3.5);
+INSERT INTO Footware_store VALUES (13, "Light up slip on", "Casual", "Kids", 34, 4.5);
+INSERT INTO Footware_store VALUES (14, "Unisex warm floor", "Casual", "Kids", 23, 5.0);
+INSERT INTO Footware_store VALUES (15, "3D dino light up", "Casual", "Kids", 34, 4.5);
+
+--show products with Inventory < 30.
+SELECT * FROM Footware_store;
+SELECT * FROM Footware_store WHERE Quantity < 30 ORDER BY Quantity;
+
+--show total number of products available in the store.
+SELECT SUM(Quantity) FROM Footware_store;
+SELECT SUM(Quantity) FROM Footware_store WHERE Quantity < 30; 
+
+
