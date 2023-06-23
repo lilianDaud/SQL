@@ -64,23 +64,42 @@ INSERT INTO card_games(date_played,game_name,player_name,score) VALUES ('2015/03
 
 SELECT * FROM card_games;
 
---Average score for all games, each game, and games with score > average
+/*Average scores of players and games played*/
 SELECT ROUND(AVG(score)) AS Average_score FROM card_games;
-SELECT game_name, ROUND(AVG(score)) AS Avg_score FROM card_games GROUP BY game_name;
-SELECT game_name, ROUND(AVG(score)) AS "Avg_score(>192)" FROM card_games GROUP BY game_name Having "avg_score(>192)" > 192;
+SELECT game_name, ROUND(AVG(score)) AS Avg_score 
+    FROM card_games 
+    GROUP BY game_name;
 
---Minimum score for all games, each game, and games with score > average
+SELECT player_name, ROUND(AVG(score)) AS "Avg_score(>192)"     FROM card_games 
+    GROUP BY player_name 
+    Having "avg_score(>192)" > 192;
+
+/*Minimum scores of games played*/
 SELECT ROUND(MIN(SCORE)) AS Minimum_score FROM Card_games;
-SELECT game_name, ROUND(MIN(SCORE)) AS Min_score FROM Card_games GROUP BY game_name;
-SELECT game_name, ROUND(MIN(SCORE)) AS "Min_score(<192)" FROM Card_games GROUP BY game_name HAVING "Min_score(<192)" <192;
+SELECT game_name, ROUND(MIN(SCORE)) AS Min_score 
+    FROM Card_games 
+    GROUP BY game_name;
 
---Maxmum score for all games, each game, and games with score > average
-SELECT ROUND(MAX(SCORE)) AS Maxmum_score FROM Card_games;
-SELECT game_name, ROUND(Max(SCORE)) AS Max_score FROM Card_games GROUP BY game_name;
-SELECT game_name, ROUND(Max(SCORE)) AS "Max_score(>192)" FROM Card_games GROUP BY game_name HAVING "Max_score(>192)" > 192;
+SELECT player_name, ROUND(MIN(SCORE)) AS "Min_score(<192)"     FROM Card_games 
+    GROUP BY player_name 
+    HAVING "Min_score(<192)" <192;
 
---Game winnings based on Players
-SELECT player_name, SUM(score) AS Total_score FROM Card_games GROUP BY player_name;
+/*Maximum scores of games played*/
+SELECT ROUND(MAX(SCORE)) AS Maximum_score FROM Card_games;
+
+SELECT game_name, ROUND(Max(SCORE)) AS Max_score 
+    FROM Card_games 
+    GROUP BY game_name;
+
+SELECT Player_name, ROUND(Max(SCORE)) AS "Max_score(>192)"     FROM Card_games 
+    GROUP BY player_name 
+    HAVING "Max_score(>192)" > 192;
+
+/*Total score and Jackpot Winners by players*/
+SELECT player_name, SUM(score) AS Total_score 
+    FROM Card_games 
+    GROUP BY player_name;
+
 SELECT player_name,
     CASE
         WHEN SUM(score) > 2500 THEN "Jackpot"
@@ -89,8 +108,11 @@ SELECT player_name,
         END AS "Winnings"
 FROM Card_games GROUP BY Player_name;
 
---Game winnings based on Games
-SELECT game_name, SUM(score) AS Total_score FROM Card_games GROUP BY game_name;
+/*Total score and Jackpot Winners for the games*/
+SELECT game_name, SUM(score) AS Total_score 
+    FROM Card_games 
+    GROUP BY game_name;
+
 SELECT Game_name,
     CASE
         WHEN SUM(score) > 5000 THEN "Jackpot_Streak"
@@ -99,5 +121,7 @@ SELECT Game_name,
         END AS "Winnings"
 FROM Card_games GROUP BY game_name;
 
---Games with scores higher than average or from games "Rummy" and "Crazy Eights"
-SELECT player_name, Score, Game_name FROM Card_games WHERE Score > 192 AND Game_name = "Rummy" OR Game_name = "Crazy Eights";
+/*Players with scores greater than average for games 'Rummy' and 'Crazy Eight'*/
+SELECT player_name, Score, Game_name 
+    FROM Card_games 
+    WHERE Score > 192 AND Game_name = "Rummy" OR Game_name = "Crazy Eights";
