@@ -1,0 +1,100 @@
+/* Create table about Fictional Movie stars*/
+
+CREATE TABLE Movie_stars
+    (Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT, 
+    Home_town TEXT,
+    Email TEXT,
+    Age REAL);
+    
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Ellie Joseph', 'Alabama','elliejoseph@gmail.com', 32);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age ) VALUES 
+    ('Jonny Fred', 'New Mexico', 'fredjonny@myyahoo.com', 23);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Adams Paul', 'Texas','Adamspaul34@gmail.com', 26);
+INSERT INTO Movie_stars (Name, Home_town,  Email, Age) VALUES 
+    ('Jenny Paul', 'Texas', 'jennypaul590@hotmail.com', 27);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Petter Anord', 'Alabama', 'AnordP@gmail.com', 32);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Emily Joseph','Kansas', 'josephemily@yahoo.com', 34);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Nick Adams', 'Texas', 'Adamsnick@gmail.com', 43);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Ben Albert', 'Arkansas', 'Albertben@hotmail.com', 25);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Andew Jonathan', 'Kansas', 'JonathanA@gmail.com', 45);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Julie Joe', 'Alabama','Joejulie@gmail.com',34);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Eve Don', 'Texas','doneve@myyahoo.com',18 );
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Jennipher Arthur', 'Kansas', 'arthurjenny@gmail.com', 27);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Raura Allen', 'Alabama', 'Allenrau@gmail.com', 45);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Fred Don','Arkansas', 'donfred@gmail.com', 34);
+INSERT INTO Movie_stars (Name, Home_town, Email, Age) VALUES 
+    ('Chris Jonathan', 'Texas', 'jonathanchris@gmail.com', 34);
+    
+ 
+ /*Create table for movie parts available*/   
+CREATE TABLE Movie_parts
+    (Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Movie TEXT, 
+    Character TEXT,
+    Location TEXT,
+    Star_Id INTEGER);
+    
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id) 
+    VALUES ('The runner', 'Teacher', 'Kansas', 4);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('Calling', 'Main character', 'Texas', 7);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('The runner', 'Mother', 'Texas', 6);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES('The runner', 'sister','Texas', 10);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('Calling', 'uncle John', 'Kansas', 9);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('Calling', 'father', 'Texas',15);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('The runner', 'friend', 'Kansas',14);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('The runner', 'Uncle', 'Texas', 2);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES ('Calling', 'Aunt', 'Kansas', 1);
+INSERT INTO Movie_parts (Movie, Character, Location, Star_Id)
+    VALUES('The runner', 'Friend', 'Texas', 3);
+    
+
+/*Create a table for sellected members to practice together*/    
+CREATE table Practice_partners (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Star1_id INTEGER,
+    Star2_id INTEGER);
+
+INSERT INTO Practice_partners (Star1_id, Star2_id)
+    VALUES (1, 4);
+INSERT INTO practice_partners (Star1_id, Star2_id)
+    VALUES (2, 3);
+INSERT INTO practice_partners (Star1_id, Star2_id)
+    VALUES (9,6);
+INSERT INTO practice_partners (Star1_id, Star2_id)
+    VALUES (14,10);
+INSERT INTO practice_partners (Star1_id, Star2_id)
+    VALUES (15,7);
+    
+
+/*Name characters that have been selected for the movies*/    
+SELECT Movie_stars.name, Movie_parts.movie, Movie_parts.character, Movie_stars.Email FROM Movie_stars
+    JOIN Movie_parts
+    ON Movie_stars.Id = Movie_parts.Star_Id;
+
+/*Name selected practice partners*/
+SELECT a.name, b.name FROM Practice_partners
+    JOIN Movie_stars a
+    ON Practice_partners.Star1_id = a.Id
+    JOIN Movie_stars b
+    ON Practice_partners.Star2_id = b.Id
